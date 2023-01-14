@@ -5,6 +5,7 @@ import List from './components/List';
 import { IUser, ITodo } from './types/types';
 import UserItem from './components/UserItem';
 import TodoItem from './components/TodoItem';
+import EventsExample from './components/EventExample';
 
 function App() {
   const [users, setUsers] = useState<IUser[]>([]);
@@ -39,6 +40,7 @@ function App() {
 
   return (
     <>
+      <EventsExample/>
       <Card
         onClick={(num) => console.log('click', num)}
         variant={CardVariant.outlined}
