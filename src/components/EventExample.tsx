@@ -34,10 +34,13 @@ const EventExample: FC = () => {
   }
 
   return (
-    <div>
-      <input value={value} onChange={changeHandler} type="text" placeholder='Управляемый'/>
+    <div style={{paddingLeft: 50, marginBottom: 20}}>
+      
+      <input style={{marginBottom:20}} value={value} onChange={changeHandler} type="text" placeholder='Управляемый'/>
       <input ref={inputRef} type="text" placeholder='Неуправляемый'/>
+      
       <button onClick={clickHandler}>Click</button>
+      <h1>Drag&Drop</h1>
       <div
         onDrag={dragHandler}
         draggable

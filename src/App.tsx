@@ -1,64 +1,45 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Card, { CardVariant } from './components/Card';
-import List from './components/List';
-import { IUser, ITodo } from './types/types';
-import UserItem from './components/UserItem';
-import TodoItem from './components/TodoItem';
 import EventsExample from './components/EventExample';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import UserPage from './components/UserPage';
+import TodosPage from './components/TodosPage';
+import { NavLink } from 'react-router-dom';
+import UserItemPage from './components/UserItemPage';
+import TodoItemPage from './components/TodoItemPage';
 
 function App() {
-  const [users, setUsers] = useState<IUser[]>([]);
-  const [todos, setTodos] = useState<ITodo[]>([]);
-
-  useEffect(() => {
-    fetchUsers();
-    fetchTodos();
-  }, []);
-
-  async function fetchUsers() {
-    try {
-      const response = await axios.get<IUser[]>(
-        'https://jsonplaceholder.typicode.com/users'
-      );
-      setUsers(response.data);
-    } catch (e) {
-      alert(e);
-    }
-  }
-
-  async function fetchTodos() {
-    try {
-      const response = await axios.get<ITodo[]>(
-        'https://jsonplaceholder.typicode.com/todos?_limit=10'
-      );
-      setTodos(response.data);
-    } catch (e) {
-      alert(e);
-    }
-  }
-
   return (
-    <>
-      <EventsExample/>
-      <Card
-        onClick={(num) => console.log('click', num)}
-        variant={CardVariant.outlined}
-        width="280px"
-        height="280px"
-      >
-        <button>кнопка</button>
-        <div>Hello!</div>
-      </Card>
-      <List
-        items={users}
-        renderItem={(user: IUser) => <UserItem user={user} key={user.id} />}
-      />
-      <List
-        items={todos}
-        renderItem={(todo: ITodo) => <TodoItem todo={todo} key={todo.id} />}
-      />
-    </>
+    <BrowserRouter>
+      <nav style={{ display: 'flex', gap: 15 , padding: 15}}>
+        <NavLink to={'/'}>Главная</NavLink>
+        <NavLink to={'/users'}>Пользователи</NavLink>
+        <NavLink to={'/todos'}>Список дел</NavLink>
+      </nav>
+      <Routes>
+        <Route path="/users" element={<UserPage />} />
+        <Route path="/todos" element={<TodosPage />} />
+        <Route path="/users/:id" element={<UserItemPage />} />
+        <Route path="/todos/:id" element={<TodoItemPage />} />
+        <Route
+          path="/"
+          element={
+            <>
+              <EventsExample />
+              <Card
+                onClick={(num) => console.log('click', num)}
+                variant={CardVariant.outlined}
+                width="280px"
+                height="280px"
+              >
+                <button>кнопка</button>
+                <div>Hello!</div>
+              </Card>
+            </>
+          }
+        ></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
