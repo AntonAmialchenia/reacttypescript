@@ -2,8 +2,8 @@ import React, { FC, useRef, useState } from 'react';
 
 const EventExample: FC = () => {
   const [value, setValue] = useState<string>();
-  const [isDrag, setIsDrag] = useState<boolean>(false)
-  const inputRef = useRef<HTMLInputElement>(null)
+  const [isDrag, setIsDrag] = useState<boolean>(false);
+  const inputRef = useRef<HTMLInputElement>(null);
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
@@ -17,28 +17,32 @@ const EventExample: FC = () => {
   };
 
   const dragWithPreventHandler = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault()
-    setIsDrag(true)
-  }
+    e.preventDefault();
+    setIsDrag(true);
+  };
 
   const levelHandler = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault()
-    setIsDrag(false)
-  }
+    e.preventDefault();
+    setIsDrag(false);
+  };
 
   const dropHandler = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault()
-    setIsDrag(false)
+    e.preventDefault();
+    setIsDrag(false);
     console.log('DROP');
-    
-  }
+  };
 
   return (
-    <div style={{paddingLeft: 50, marginBottom: 20}}>
-      
-      <input style={{marginBottom:20}} value={value} onChange={changeHandler} type="text" placeholder='Управляемый'/>
-      <input ref={inputRef} type="text" placeholder='Неуправляемый'/>
-      
+    <div style={{ paddingLeft: 50, marginBottom: 20 }}>
+      <input
+        style={{ marginBottom: 20 }}
+        value={value}
+        onChange={changeHandler}
+        type="text"
+        placeholder="Управляемый"
+      />
+      <input ref={inputRef} type="text" placeholder="Неуправляемый" />
+
       <button onClick={clickHandler}>Click</button>
       <h1>Drag&Drop</h1>
       <div
@@ -50,7 +54,12 @@ const EventExample: FC = () => {
         onDrop={dropHandler}
         onDragLeave={levelHandler}
         onDragOver={dragWithPreventHandler}
-        style={{ width: 200, height: 200, background: isDrag ? 'blue' : 'red', marginTop: 15 }}
+        style={{
+          width: 200,
+          height: 200,
+          background: isDrag ? 'blue' : 'red',
+          marginTop: 15,
+        }}
       ></div>
     </div>
   );

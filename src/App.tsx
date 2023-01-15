@@ -11,7 +11,7 @@ import TodoItemPage from './components/TodoItemPage';
 function App() {
   return (
     <BrowserRouter>
-      <nav style={{ display: 'flex', gap: 15 , padding: 15}}>
+      <nav style={{ display: 'flex', gap: 15, padding: 15 }}>
         <NavLink to={'/'}>Главная</NavLink>
         <NavLink to={'/users'}>Пользователи</NavLink>
         <NavLink to={'/todos'}>Список дел</NavLink>

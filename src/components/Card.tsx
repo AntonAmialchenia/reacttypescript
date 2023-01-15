@@ -22,7 +22,7 @@ const Card: FC<CardProps> = ({ width, height, variant, children, onClick }) => {
         height,
         border: variant === CardVariant.outlined ? '1px solid gray' : 'none',
         background: variant === CardVariant.primary ? 'lightgray' : '',
-        marginLeft: 50
+        marginLeft: 50,
       }}
       onClick={() => onClick(state)}
     >

@@ -3,8 +3,6 @@ import { IUser } from '../types/types';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 
-
-
 const UserItemPage: FC = () => {
   const [user, setUser] = useState<IUser | null>(null);
   const { id } = useParams<'id'>();

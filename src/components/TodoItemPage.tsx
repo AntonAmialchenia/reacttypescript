@@ -27,7 +27,6 @@ const TodoItemPage: FC = () => {
       <button onClick={() => nav('/todos')}>Back</button>
       <h1> {todo?.title}</h1>
       <div>{todo?.completed ? 'Выполнено' : 'Не выполнено'}</div>
-      
     </div>
   );
 };
